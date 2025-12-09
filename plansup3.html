@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Hosting Plans</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #148aff 0, #020817 55%, #000 100%);
+      color: #e5f0ff;
+    }
+
+    .wrapper {
+      width: 90%;
+      max-width: 1100px;
+      background: rgba(94, 114, 150, 0.538);
+      border-radius: 18px;
+      display: flex;
+      overflow: hidden;
+      border: 1px solid rgba(138, 160, 177, 0.162);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    /* LEFT SIDE - CATEGORY LIST */
+    .sidebar {
+      width: 30%;
+      background: linear-gradient(180deg, #0000007e, #000000da);
+      border-right: 1px solid rgba(3, 11, 18, 0.221);
+      padding: 20px 18px;
+    }
+
+    .brand {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 18px;
+      color: #e0f2ff;
+    }
+
+    .brand span {
+      color: #ff9500;
+    }
+
+    .sidebar-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #749ffe;
+      margin-bottom: 10px;
+    }
+
+    .nav-list {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .nav-item {
+      margin-bottom: 10px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      color: #c7ddff;
+      background: transparent;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .nav-link span.icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: rgba(135, 177, 196, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+      background: radial-gradient(circle at top left, #ff9500, #e69d1ed7);
+      border-color: rgba(21, 101, 90, 0.6);
+      box-shadow: 0 0 18px rgba(8, 47, 61, 0.318);
+      color: #000000;
+    }
+
+    /* RIGHT SIDE - CONTENT */
+    .content {
+      width: 70%;
+      padding: 24px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      background: radial-gradient(circle at top left, #35363add, #000000da);
+    }
+
+    .content-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .content-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(112, 184, 175, 0.56);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #bce5e9;
+    }
+
+    .content-subtitle {
+      font-size: 0.9rem;
+      color: #acbef2;
+      margin-top: 4px;
+    }
+
+    .info-box {
+      margin-top: 14px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      background: rgba(4, 13, 30, 0.603);
+      border: 1px solid rgba(45, 90, 145, 0.389);
+    }
+
+    .info-row {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+
+    .info-label {
+      width: 120px;
+      color: #b7812f;
+    }
+
+    .info-value {
+      color: #7e94b3;
+    }
+
+    .info-hint {
+      font-size: 0.8rem;
+      color: #444c63;
+      margin-top: 6px;
+      opacity: 0.9;
+    }
+
+    .bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .small-text {
+      font-size: 0.8rem;
+      color: #000000;
+    }
+
+    .see-all-btn {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #ff9500, #ffd000);
+      color: rgb(0, 0, 0);
+      box-shadow: 0 10px 30px rgba(126, 126, 44, 0.738);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.2s;
+    }
+
+    .see-all-btn:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(3, 9, 17, 0.8);
+      filter: brightness(1.06);
+    }
+
+    .see-all-btn span.arrow {
+      font-size: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+      }
+
+      .sidebar,
+      .content {
+        width: 100%;
+      }
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid rgba(26, 75, 109, 0.3);
+      }
+
+      .info-row {
+        flex-direction: column;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+        gap: 28px;
+        align-items: center;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+
+      .hero-title {
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        letter-spacing: 0.03em;
+      }
+
+      .hero-title span.highlight {
+        background: linear-gradient(135deg, #ff9500, #e0b803);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .info-label {
+        width: auto;
+      }
+
+      body {
+        padding: 20px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- LEFT SIDE -->
+        <aside class="sidebar">
+            <header class="nav">
+                <div class="logo">
+                    <a href="intex.html">
+                        <img src="image.png" alt="Logo" height="60">
+                    </a>
+                    <main class="brand">
+                        <section>
+                            <h3 class="Brand">
+                                <span class="highlight"> Hosting </span> Hub
+
+
+                            </h3>
+                        </section>
+                    </main>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <button class="nav-link active" onclick="showPlan('minecraft', this)">
+                                <span class="icon">🟩</span>
+                                <span>Minecraft Hosting</span>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" onclick="showPlan('vps', this)">
+                                <span class="icon">💻</span>
+                                <span>VPS Hosting</span>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" onclick="showPlan('games', this)">
+                                <span class="icon">🎮</span>
+                                <span>Games Hosting</span>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" onclick="showPlan('other', this)">
+                                <span class="icon">✨</span>
+                                <span>Other Services</span>
+                            </button>
+                        </li>
+                    </ul>
+        </aside>
+
+        <!-- RIGHT SIDE -->
+        <main class="content">
+            <div>
+                <div class="content-header">
+                    <div>
+                        <h2 id="plan-title">Minecraft Hosting</h2>
+                        <p class="content-subtitle" id="plan-subtitle">
+                            <strong> Low-latency </strong>servers, <strong> DDoS </strong> protection and easy control panel for your worlds.
+                        </p>
+                    </div>
+                    <span class="badge" id="plan-badge">Starting @₹49/mo</span>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-label">What you get</div>
+                        <div class="info-value" id="plan-features">
+                            Upto 32 GB RAM, NVMe storage, 24/7 uptime and instant setup. Optimized for plugins and
+                            modpacks. </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Perfect for</div>
+                        <div class="info-value" id="plan-perfect">
+                            SMPs, minigame servers, YouTuber communities and event servers. </div>
+                    </div>
+                    <p class="info-hint" id="plan-hint">
+                        This is only a quick overview. Click “See All Minecraft Plans” to view full pricing, locations
+                        and specs.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bottom-row">
+                <p class="small-text">
+                    99.9% uptime • Free DDoS Protection • Instant setup after payment
+                </p>
+                <!-- This will change via JS -->
+                <a href="mc plans.html" id="see-all-link" class="see-all-btn">
+                    <span id="see-all-text">See All Minecraft Plans</span>
+                    <span class="arrow">➜</span>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Put your real links here:
+        const data = {
+            minecraft: {
+                title: "Minecraft Hosting",
+                subtitle:
+                    "Low-latency servers, DDoS protection and easy control panel for your worlds.",
+                badge: "Starting @₹49/mo",
+                features:
+                    "Upto 32 GB RAM, NVMe storage, 24/7 uptime and instant setup. Optimized for plugins and modpacks.",
+                perfect: "SMPs, minigame servers, YouTuber communities and event servers.",
+                hint: "This is only a quick overview. Click “See All Minecraft Plans” to view full pricing, locations and specs.",
+                linkHref: "mc plans.html",              // 🔗 change to your URL
+                linkText: "See All Minecraft Plans",       // 📝 button text
+            },
+            vps: {
+                title: "VPS Hosting",
+                subtitle:
+                    "Powerful virtual servers for projects, bots, websites and custom setups.",
+                badge: "Starting @₹199/mo",
+                features:
+                    "KVM virtualization, dedicated resources, root access, NVMe storage and multiple OS templates.",
+                perfect: "Game panels, Discord bots, web hosting, testing environments and more.",
+                hint: "This is only a quick overview. Click “See All VPS Plans” to view CPU / RAM options and full specs.",
+                linkHref: "vps plans.html",
+                linkText: "See All VPS Plans",
+            },
+            games: {
+                title: "Games Hosting",
+                subtitle:
+                    "Optimized hosting for popular game servers with easy-to-use control panels.",
+                badge: "Starting @₹149/mo",
+                features:
+                    "Support for multiple game types, automatic restarts, server console and real-time monitoring.",
+                perfect: "CS:GO, Rust, FiveM and more community game servers.",
+                hint: "Click “See All Game Server Plans” to check supported games and regions.",
+                linkHref: "games plan.html",
+                linkText: "See All Game Server Plans",
+            },
+            other: {
+                title: "Other Services",
+                subtitle:
+                    "Extra services to boost your projects and community experience.",
+                badge: "Custom pricing",
+                features:
+                    "Domain linking, basic web hosting, Discord bot hosting, backups and migration help.",
+                perfect: "Creators, small businesses and communities needing a full solution.",
+                hint: "Click “See All Extra Services” for domains, web hosting, addons and more.",
+                linkHref: "dm bots.html",
+                linkText: "See All Extra Services",
+            },
+        };
+
+        function showPlan(key, btn) {
+            const plan = data[key];
+            if (!plan) return;
+
+            // update texts
+            document.getElementById("plan-title").textContent = plan.title;
+            document.getElementById("plan-subtitle").textContent = plan.subtitle;
+            document.getElementById("plan-badge").textContent = plan.badge;
+            document.getElementById("plan-features").textContent = plan.features;
+            document.getElementById("plan-perfect").textContent = plan.perfect;
+            document.getElementById("plan-hint").textContent = plan.hint;
+
+            // update button link + text
+            const seeAllLink = document.getElementById("see-all-link");
+            const seeAllText = document.getElementById("see-all-text");
+            seeAllLink.href = plan.linkHref;
+            seeAllText.textContent = plan.linkText;
+
+            // active state on sidebar
+            document.querySelectorAll(".nav-link").forEach((b) => {
+                b.classList.remove("active");
+            });
+            btn.classList.add("active");
+        }
+    </script>
+</body>
+
+<head>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: url("CINEMATOR 3-1.gif") no-repeat center center fixed;
+  background-size: cover;  /* makes the image fill the whole page */
+}
+</style>
+</head>
+
+</html>
